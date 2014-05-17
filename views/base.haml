@@ -1,0 +1,25 @@
+!!!5
+%head
+  %link{ rel: 'stylesheet', href: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' }
+  %script{ type: 'text/javascript', src: 'https://code.jquery.com/jquery-2.1.1.min.js' }
+%body
+  .container
+    .page-header
+      %h1.text-center
+        %img{ src: 'logo.png', height: '150px' }
+    .content
+      .row
+        - @users.each do |users|
+          .col-md-4
+            - users.each do |user|
+              .media.well.well-sm
+                %a.pull-left
+                  %img{ src: "http://imageproxy.heroku.com/convert?resize=200x200&source=#{CGI::escape(user['avatar'])}.png" }
+                .media-body
+                  %h4= user['name']
+                  %p 
+                    %b JSessionID: 
+                    %div{ style: 'word-wrap: break-word;'}= user['session_id']
+                  %p 
+                    %b AuthCode: 
+                    %div{ style: 'word-wrap: break-word;'}= user['auth_code']
